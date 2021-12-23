@@ -12,7 +12,7 @@
 // }
 
 // function createRect(obj, color) {
-    // context.beginPath()
+//     context.beginPath()
 //  context.fillStyle = color;
 //  return context.fillRect(obj.x, obj.y(), obj.width, obj.height);
 // }
@@ -150,18 +150,12 @@
 // // 10.
 // // create 10 squares in random positions
 // for (let index = 0; index < 10; index++) {
-//  const colors = ["red", "purple", "teal", "orange", "blue"];
-//  let y = Math.floor(Math.random() * canvas.height);
-//  let x = Math.floor(Math.random() * canvas.width) - box.width;
+//  let y = Math.floor(Math.random()) * (canvas.height-box.height);
+//  box.x = Math.floor(Math.random()) * (canvas.width-box-width);
 //  box.x = x;
 //  box.y = function () {
 //   return y;
 //  };
-//  if (y > canvas.height - box.height)
-//   box.y = function () {
-//    return y - box.height;
-//   };
-//  if (x > canvas.width - box.width) box.x = x - box.width;
 //  createRect(box, "white");
 // }
 
@@ -182,19 +176,11 @@
 // // create 10 squares in random positions and colors
 // for (let index = 0; index < 10; index++) {
 //  const colors = ["red", "purple", "teal", "orange", "blue"];
-//  let y = Math.floor(Math.random() * canvas.height);
-//  let x = Math.floor(Math.random() * canvas.width) - box.width;
-//  box.x = x;
-//  box.y = function () {
+//  let y = Math.floor(Math.random()) * (canvas.height-box.width);
+//  box.x = Math.floor(Math.random()) * (canvas.width- box.width) ;
+//  box.y = funcx`tion () {
 //   return y;
 //  };
-
-//  if (y > canvas.height - box.height)
-//   box.y = function () {
-//    return y - box.height;
-//   };
-
-//  if (x > canvas.width - box.width) box.x = x - box.width;
 //  createRect(box, colors[Math.floor(Math.random() * 5)]);
 // }
 
