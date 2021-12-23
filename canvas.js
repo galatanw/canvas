@@ -26,7 +26,7 @@
 //  return context.clearRect(obj.x, obj.y(), obj.width, obj.height);
 // }
 // function deleteArc(obj) {}
-// const box = {
+// let box = {
 //  width: 70,
 //  height: 70,
 //  y: function () {
@@ -34,7 +34,7 @@
 //  },
 //  x: 50,
 // };
-// const circle = {
+// let circle = {
 //  x: 100,
 //  y: 50,
 //  r: 50,
@@ -43,42 +43,46 @@
 // };
 // // 1.
 // // create two 50x50 squares anyware in the canvas
-// createRect(box, "black");
-// box.x = 100;
-// box.y = function () {
+// let boxCopy={...box}
+// createRect(boxCopy, "black");
+// boxCopy.x = 100;
+// boxCopy.y = function () {
 //  return 100;
 // };
-// createRect(box, "black");
+// createRect(boxCopy, "black");
 
 // // 2.
 // // create two 70x70 squares anyware in the canvas
-// createRect(box, "red");
-// box.x = 100;
-// createRect(box, "red");
+// boxCopy={...box}
+// createRect(boxCopy, "red");
+// boxCopy.x += 100;
+// createRect(boxCopy, "red");
 
 // // 3.
 // // create a blue 30x30 circle in the canvas
-// circle.r = 30;
-// createArc(circle, "blue");
+// let circleCopy={...circle}
+// circleCopy.r = 30;
+// createArc(circleCopy, "blue");
 
 // // 4.
 // // create a red 50x50 circle in the canvas
-// circle.r = 50;
-// createArc(circle, "red");
+//  circleCopy={...circle}
+// circleCopy.r = 50;
+// createArc(circleCopy, "red");
 
 // // 5.
 // // create 2 green 50x50 circles anywere in the canvas
-// circle.r = 50;
-// createArc(circle, "green");
-// circle.x=circle.x+circle.r*2
-// createArc(circle,"green")
+// circleCopy={...circle}
+// circleCopy.r = 50;
+// createArc(circleCopy, "green");
+// circleCopy.x=circleCopy.x+circleCopy.r*2
+// createArc(circleCopy,"green")
 
 // // 6.
-// // create three boxes in diffrent places that would move fowroad every 20 secondes
+// // create three boxes in diffrent places that would move 20 steps every .5 secondes
 // const first={...box}
 // const second={...box}
 // const third={...box}
-
 // function threeBoxesMoveFowroads(){
 //     deleteRect(first)
 //     first.x+=20
@@ -93,15 +97,14 @@
 //     third.y=function(){return 450}
 //     createRect(third,"blue")
 
-//     requestAnimationFrame(threeBoxesMoveFowroads)
 // }
-// threeBoxesMoveFowroads()
+// setInterval(threeBoxesMoveFowroads,500)
 
 // // 7.
 // // create a floor object and repesent it as the canvas floor
 //     const floor={
 //         width:canvas.width,
-//         height:200,
+//         height:50,
 //         x:0,
 //             y:function(){
 //             return canvas.height-this.height
@@ -131,7 +134,6 @@
 //     jumping=true
 //     deleteRect(player)
 //     up?jumpY+=1:jumpY-=1
-//     console.log("y ="+player.y(),"-"+jumpY);
 //     player.x+=1
 //     player.y=function(){return y-jumpY}
 
@@ -149,56 +151,58 @@
 
 // // 10.
 // // create 10 squares in random positions
+// boxCopy={...box}
 // for (let index = 0; index < 10; index++) {
-//  let y = Math.floor(Math.random()) * (canvas.height-box.height);
-//  box.x = Math.floor(Math.random()) * (canvas.width-box-width);
-//  box.x = x;
-//  box.y = function () {
+// boxCopy.x = Math.random() * (canvas.width-boxCopy.width);
+//  let y = Math.random() * (canvas.height-boxCopy.height);
+//  boxCopy.y = function () {
 //   return y;
 //  };
-//  createRect(box, "white");
+//  createRect(boxCopy, "white");
 // }
 
 // // 11.
 // // create 10 circles in random positions and sizes
+// circleCopy={...circle}
 // for (let index = 0; index < 10; index++) {
-// circle.r=Math.floor(Math.random() * 100)
-// circle.y = Math.floor(Math.random() * canvas.height);
-// circle.x =Math.floor(Math.random() * canvas.width);
-// if(circle.y>canvas.height-circle.r)circle.y=canvas.height-circle.r
-// else if(circle.y<circle.r)circle.y+=circle.r*2
-// if(circle.x>canvas.width-circle.r)circle.x=canvas.width-circle.r
-// else if(circle.x<circle.r)circle.x+=circle.r*2
-// createArc(circle,"red")
+// circleCopy.r=Math.random() * 40
+// circleCopy.y = Math.random() * canvas.height-circleCopy.r;
+// circleCopy.x =Math.random() * canvas.width-circleCopy.r;
+// if(circleCopy.y<circleCopy.r)circleCopy.y+=circleCopy.r*2
+// if(circleCopy.x<circleCopy.r)circleCopy.x+=circleCopy.r*2
+// createArc(circleCopy,"red")
 // }
 
 // // 12.
 // // create 10 squares in random positions and colors
+// boxCopy={...box}
 // for (let index = 0; index < 10; index++) {
 //  const colors = ["red", "purple", "teal", "orange", "blue"];
-//  let y = Math.floor(Math.random()) * (canvas.height-box.width);
-//  box.x = Math.floor(Math.random()) * (canvas.width- box.width) ;
-//  box.y = funcx`tion () {
+//  let y = Math.random() * (canvas.height-boxCopy.width);
+//  boxCopy.x = Math.random() * (canvas.width- boxCopy.width) ;
+//  boxCopy.y = function () {
 //   return y;
 //  };
-//  createRect(box, colors[Math.floor(Math.random() * 5)]);
+//  createRect(boxCopy, colors[Math.floor(Math.random() * 5)]);
 // }
 
 // // 13.
 // // draw a smily face using arcs
-// circle.r=100
-// createArc(circle,"white")
-// circle.r=20
-// circle.x-=50
-// createArc(circle,"black")
-// circle.r=20
-// circle.x+=100
-// createArc(circle,"black")
-// circle.r=20
-// circle.x-=50
-// circle.y+=circle.y
-// circle.eEng=1
-// createArc(circle,"black")
+// circleCopy={...circle}
+// circleCopy.y=200
+// circleCopy.r=100
+// createArc(circleCopy,"white")
+// circleCopy.r=20
+// circleCopy.x-=50
+// createArc(circleCopy,"black")
+// circleCopy.r=20
+// circleCopy.x+=100
+// createArc(circleCopy,"black")
+// circleCopy.r=20
+// circleCopy.x-=50
+// circleCopy.y+=circleCopy.y/4
+// circleCopy.eEng=1
+// createArc(circleCopy,"black")
 
 // // create a rectangle with diagonal lines
 // createLine({sX:0,sY:0,eX:200,eY:100},"blue")
