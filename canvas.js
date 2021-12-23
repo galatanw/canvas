@@ -1,46 +1,75 @@
-// const canvas = document.querySelector("#canvas");
-// canvas.height = window.innerHeight;
-// canvas.width = window.innerWidth;
-// canvas.style.background = "purple";
-// const context = canvas.getContext("2d");
-// function createLine(obj,color){
-//     context.beginPath()
-//     context.strokeStyle=color
-//     context.moveTo(obj.sX,obj.sY)
-//     context.lineTo(obj.eX,obj.eY)
-//     context.stroke()
-// }
+const canvas = document.querySelector("#canvas");
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+canvas.style.background = "purple";
+const context = canvas.getContext("2d");
+function createLine(obj,color){
+    context.beginPath()
+    context.strokeStyle=color
+    context.moveTo(obj.sX,obj.sY)
+    context.lineTo(obj.eX,obj.eY)
+    context.stroke()
+  context.closePath()
+}
+function createLines(objArr){
+    context.beginPath()
+    context.strokeStyle=objArr[0].color
+    context.moveTo(objArr[0].sX,objArr[0].sY)
+    context.lineTo(objArr[0].eX,objArr[0].eY)
+    context.stroke()
+    for (let index = 1; index < objArr.length; index++) {
+    if(objArr[index-1].color!==objArr[index].color)context.beginPath()
+        context.strokeStyle=objArr[index].color
+        context.lineTo(objArr[index].sX,objArr[index].sY)
+        context.lineTo(objArr[index].eX,objArr[index].eY)
+        context.stroke()        
+    }
+  context.closePath()
+}
 
-// function createRect(obj, color) {
-//     context.beginPath()
-//  context.fillStyle = color;
-//  return context.fillRect(obj.x, obj.y(), obj.width, obj.height);
-// }
-// function createArc(obj, color) {
-//  context.beginPath();
-//  context.fillStyle = color;
-//  context.arc(obj.x, obj.y, obj.r, obj.sEng, obj.eEng * Math.PI);
-//  return context.fill();
-// }
-// function deleteRect(obj) {
-//  return context.clearRect(obj.x, obj.y(), obj.width, obj.height);
-// }
-// function deleteArc(obj) {}
-// let box = {
-//  width: 70,
-//  height: 70,
-//  y: function () {
-//   return 0;
-//  },
-//  x: 50,
-// };
-// let circle = {
-//  x: 100,
-//  y: 50,
-//  r: 50,
-//  sEng: 0,
-//  eEng: 2,
-// };
+function createLinesFill(objArr){
+    context.beginPath()
+    context.fillStyle=objArr[0].color
+    context.moveTo(objArr[0].sX,objArr[0].sY)
+    context.lineTo(objArr[0].eX,objArr[0].eY)
+    for (let index = 1; index < objArr.length; index++) {
+        context.lineTo(objArr[index].sX,objArr[index].sY)
+        context.lineTo(objArr[index].eX,objArr[index].eY)
+      }
+      context.fill()
+}
+
+function createRect(obj, color) {
+    context.beginPath()
+ context.fillStyle = color;
+  context.fillRect(obj.x, obj.y(), obj.width, obj.height);
+  return context.closePath()
+}
+function createArc(obj, color) {
+ context.beginPath();
+ context.fillStyle = color;
+ context.arc(obj.x, obj.y, obj.r, obj.sEng, obj.eEng * Math.PI);
+  context.fill();
+  return context.closePath()
+}
+function deleteRect(obj) {
+ return context.clearRect(obj.x, obj.y(), obj.width, obj.height);
+}
+let box = {
+ width: 70,
+ height: 70,
+ y: function () {
+  return 0;
+ },
+ x: 50,
+};
+let circle = {
+ x: 0,
+ y: 0,
+ r: 50,
+ sEng: 0,
+ eEng: 2,
+};
 // // 1.
 // // create two 50x50 squares anyware in the canvas
 // let boxCopy={...box}
@@ -205,10 +234,9 @@
 // createArc(circleCopy,"black")
 
 // // create a rectangle with diagonal lines
-// createLine({sX:0,sY:0,eX:200,eY:100},"blue")
-// createLine({sX:200,sY:0,eX:0,eY:100},"blue")
-// createLine({sX:0,sY:0,eX:200,eY:0},"red")
-// createLine({sX:200,sY:0,eX:200,eY:100},"red")
-// createLine({sX:200,sY:100,eX:0,eY:100},"red")
-// createLine({sX:0,sY:100,eX:0,eY:0},"red")
-
+// createLine({sX:0,sY:0,eX:200,eY:100,color:"blue"})
+// createLine({sX:200,sY:0,eX:0,eY:100,color:"blue"})
+// createLine({sX:0,sY:0,eX:200,eY:0,color:"red"},)
+// createLine({sX:200,sY:0,eX:200,eY:100,color:"red"},"")
+// createLine({sX:200,sY:100,eX:0,eY:100,color:"red"},
+// createLine({sX:0,sY:100,eX:0,eY:0,color:"red"},
